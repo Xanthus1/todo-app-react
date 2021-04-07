@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import TODO_API_URL from '../todo-api-url.js';
 
 export default class EditTodo extends Component {
 
@@ -21,7 +22,7 @@ export default class EditTodo extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/todos/'+this.props.match.params.id)
+    axios.get(TODO_API_URL+'/todos/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           todo_description: response.data.todo_description,
@@ -68,7 +69,7 @@ export default class EditTodo extends Component {
       todo_completed: this.state.todo_completed
     };
     console.log(obj);
-    axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
+    axios.post(TODO_API_URL+'/todos/update/'+this.props.match.params.id, obj)
       .then(res => console.log(res.data));
 
     this.props.history.push('/');

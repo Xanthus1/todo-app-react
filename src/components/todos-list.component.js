@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import TODO_API_URL from '../todo-api-url.js';
 
 const Todo = props => (
   <tr>
@@ -21,7 +22,7 @@ export default class TodosList extends Component {
     };
   }
   componentDidMount() {
-    axios.get('http://localhost:4000/todos/')
+    axios.get(TODO_API_URL+'/todos/')
       .then(response => {
         this.setState({ todos: response.data });
       })
