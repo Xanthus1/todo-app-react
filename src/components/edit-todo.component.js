@@ -12,6 +12,7 @@ export default class EditTodo extends Component {
     this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
     this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
 
     this.state = {
       todo_description: '',
@@ -68,10 +69,17 @@ export default class EditTodo extends Component {
       todo_priority: this.state.todo_priority,
       todo_completed: this.state.todo_completed
     };
-    console.log(obj);
     axios.post(TODO_API_URL+'/todos/update/'+this.props.match.params.id, obj)
-      .then(res => console.log(res.data));
+      .then(res => console.log(res.data))
+      .catch(error => console.error(error))
+    this.props.history.push('/');
+  }
 
+  onDelete(e){
+    e.preventDefault();
+    axios.delete(TODO_API_URL+"/todos/delete/"+this.props.match.params.id)
+      .then(res => console.log(res.data))
+      .catch(error => console.error(error));
     this.props.history.push('/');
   }
 
@@ -151,6 +159,7 @@ export default class EditTodo extends Component {
           <div className="form-group">
             <input type="submit" value="Update Todo" className="btn btn-primary" />
           </div>
+          <button className="btn btn-danger" onClick={this.onDelete}>Delete</button>
         </form>
       </div>
     )

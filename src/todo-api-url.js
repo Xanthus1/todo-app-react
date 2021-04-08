@@ -1,1 +1,2 @@
-export default "http://localhost:4000"
+const TODO_API_URL = "http://localhost:4000"
+export default TODO_API_URL
