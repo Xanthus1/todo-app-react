@@ -70,17 +70,21 @@ export default class EditTodo extends Component {
       todo_completed: this.state.todo_completed
     };
     axios.post(TODO_API_URL+'/todos/update/'+this.props.match.params.id, obj)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        this.props.history.push("/");
+      })
       .catch(error => console.error(error))
-    this.props.history.push('/');
   }
 
   onDelete(e){
     e.preventDefault();
     axios.delete(TODO_API_URL+"/todos/delete/"+this.props.match.params.id)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        this.props.history.push("/");
+      })
       .catch(error => console.error(error));
-    this.props.history.push('/');
   }
 
   render() {

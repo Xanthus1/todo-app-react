@@ -10,7 +10,8 @@ export default class CreateTodo extends Component {
           todo_description: '',
           todo_responsible: '',
           todo_priority: '',
-          todo_completed: false
+          todo_completed: false,
+          todo_just_submitted:false,
       }
 
       this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
@@ -59,9 +60,17 @@ export default class CreateTodo extends Component {
       todo_description: '',
       todo_responsible: '',
       todo_priority: '',
-      todo_completed: false
+      todo_completed: false,
+      todo_just_submitted: true
     })
+
+    //hide "Todo submitted" text after 2 seconds
+    setTimeout( () => {this.setState( {todo_just_submitted:false} );}, 2000);
   }
+
+
+
+
   render() {
       return (
         <div style={{marginTop: 10}}>
@@ -122,6 +131,10 @@ export default class CreateTodo extends Component {
 
             <div className="form-group">
                 <input type="submit" value="Create Todo" className="btn btn-primary" />
+            </div>
+
+            <div style={{visibility : this.state.todo_just_submitted ? "visible" : "hidden"}}>
+                <h2>Todo Created!</h2>
             </div>
           </form>
         </div>
