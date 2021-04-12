@@ -18,6 +18,10 @@ Create a file with the name ".env" in the root directory, and use the example be
 
 `REACT_APP_TODO_API_URL="http://example.com"`
 
+Install dependencies (execute in root directory)
+
+`$ npm install`
+
 ## Deployment
 
 To run in development mode:
